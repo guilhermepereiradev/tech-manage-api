@@ -35,4 +35,10 @@ public class UserController {
         var createdUser = userService.createUser(userRequest.toModel());
         return new ResponseEntity<>(UserResponse.of(createdUser), HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

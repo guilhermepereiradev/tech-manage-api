@@ -29,10 +29,18 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
     }
 
+    @Override
     @Transactional
     public User createUser(User user) {
         validateUser(user);
         return userRepository.save(user);
+    }
+
+    @Override
+    @Transactional
+    public void deleteUser(Long id) {
+        var user = findUserById(id);
+        userRepository.delete(user);
     }
 
     private void validateUser(User user) {
