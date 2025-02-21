@@ -28,4 +28,16 @@ public class UserServiceImpl implements UserService {
     public User findUserById(Long id) {
         return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
     }
+
+    @Transactional
+    public User createUser(User user) {
+        validateUser(user);
+        return userRepository.save(user);
+    }
+
+    private void validateUser(User user) {
+        if(userRepository.existsByEmail(user.getEmail())) {
+            throw new EmailAlreadyInUseException(user.getEmail());
+        }
+    }
 }
