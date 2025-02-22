@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public User createUser(User user) {
-        validateUser(user);
+        validateUser(user, false);
         return userRepository.save(user);
     }
 
@@ -43,8 +43,20 @@ public class UserServiceImpl implements UserService {
         userRepository.delete(user);
     }
 
-    private void validateUser(User user) {
-        if(userRepository.existsByEmail(user.getEmail())) {
+    @Override
+    @Transactional
+    public User updateUser(Long id, User newUser) {
+        var user = findUserById(id);
+        newUser.setId(user.getId());
+
+        boolean emailWasUpdated = !newUser.getEmail().equals(user.getEmail());
+        validateUser(newUser, emailWasUpdated);
+
+        return userRepository.save(newUser);
+    }
+
+    private void validateUser(User user, boolean emailWasUpdated) {
+        if(emailWasUpdated && userRepository.existsByEmail(user.getEmail())) {
             throw new EmailAlreadyInUseException(user.getEmail());
         }
     }

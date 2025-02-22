@@ -32,4 +32,12 @@ public record UserRequest(
     public User toModel() {
         return new User(name, email, phone, birthDate, UserType.valueOf(userType));
     }
+
+    public void copyProperties(User user) {
+        user.setName(name);
+        user.setEmail(email);
+        user.setPhone(phone);
+        user.setBirthDate(birthDate);
+        user.setUserType(UserType.valueOf(userType));
+    }
 }

@@ -2,6 +2,7 @@ package com.techmanage.user.api.controller;
 
 import com.techmanage.user.api.dto.UserRequest;
 import com.techmanage.user.api.dto.UserResponse;
+import com.techmanage.user.domain.model.User;
 import com.techmanage.user.domain.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -40,5 +41,12 @@ public class UserController {
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<UserResponse> updateUser(@PathVariable Long id, @RequestBody @Valid UserRequest userRequest) {
+        var newUser = new User();
+        userRequest.copyProperties(newUser);
+        return new ResponseEntity<>(UserResponse.of(userService.updateUser(id, newUser)), HttpStatus.OK);
     }
 }
