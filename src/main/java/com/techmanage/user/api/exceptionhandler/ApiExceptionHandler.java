@@ -3,6 +3,7 @@ package com.techmanage.user.api.exceptionhandler;
 import com.techmanage.user.domain.exception.BusinessException;
 import com.techmanage.user.domain.exception.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -50,6 +51,15 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                 .toList();
 
         return getErrorResponse(status.value(), error, message, servletRequest.getRequestURI(), objects);
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleTypeMismatch(TypeMismatchException ex, HttpHeaders headers,
+                                                        HttpStatusCode status, WebRequest request) {
+        var error = "Type mismatch";
+        var servletRequest = ((ServletWebRequest) request).getRequest();
+
+        return getErrorResponse(status.value(), error, ex.getMessage(), servletRequest.getRequestURI());
     }
 
     private ResponseEntity<Object> getErrorResponse(Integer status, String error, String message, String path) {
