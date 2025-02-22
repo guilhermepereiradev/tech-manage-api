@@ -6,6 +6,7 @@ import com.techmanage.user.api.exceptionhandler.StandardError;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -37,7 +38,19 @@ public interface UserControllerOpenApi {
                     @ApiResponse(
                             responseCode = "404",
                             description = "Usuário não encontrado",
-                            content = @Content(schema = @Schema(implementation = StandardError.class))
+                            content = @Content(
+                                    examples = @ExampleObject(
+                                            value = """
+                                            {
+                                                "timestamp": "2025-02-22T15:30:00Z",
+                                                "status": 404,
+                                                "error": "Entity not found",
+                                                "message": "User not found with id 5",
+                                                "path": "/api/users/5"
+                                            }
+                                            """
+                                    )
+                            )
                     ),
                     @ApiResponse(
                             responseCode = "400",
@@ -60,7 +73,19 @@ public interface UserControllerOpenApi {
                     @ApiResponse(
                             responseCode = "404",
                             description = "Usuário não encontrado",
-                            content = @Content(schema = @Schema(implementation = StandardError.class))
+                            content = @Content(
+                                    examples = @ExampleObject(
+                                            value = """
+                                            {
+                                                "timestamp": "2025-02-22T15:30:00Z",
+                                                "status": 404,
+                                                "error": "Entity not found",
+                                                "message": "User not found with id 5",
+                                                "path": "/api/users/5"
+                                            }
+                                            """
+                                    )
+                            )
                     ),
                     @ApiResponse(
                             responseCode = "400",
@@ -83,7 +108,19 @@ public interface UserControllerOpenApi {
                     @ApiResponse(
                             responseCode = "404",
                             description = "Usuário não encontrado",
-                            content = @Content(schema = @Schema(implementation = StandardError.class))
+                            content = @Content(
+                                    examples = @ExampleObject(
+                                            value = """
+                                            {
+                                                "timestamp": "2025-02-22T15:30:00Z",
+                                                "status": 404,
+                                                "error": "Entity not found",
+                                                "message": "User not found with id 5",
+                                                "path": "/api/users/5"
+                                            }
+                                            """
+                                    )
+                            )
                     ),
                     @ApiResponse(
                             responseCode = "400",
@@ -107,7 +144,19 @@ public interface UserControllerOpenApi {
                     @ApiResponse(
                             responseCode = "404",
                             description = "Usuário não encontrado",
-                            content = @Content(schema = @Schema(implementation = StandardError.class))
+                            content = @Content(
+                                    examples = @ExampleObject(
+                                            value = """
+                                            {
+                                                "timestamp": "2025-02-22T15:30:00Z",
+                                                "status": 404,
+                                                "error": "Entity not found",
+                                                "message": "User not found with id 5",
+                                                "path": "/api/users/5"
+                                            }
+                                            """
+                                    )
+                            )
                     ),
                     @ApiResponse(
                             responseCode = "400",

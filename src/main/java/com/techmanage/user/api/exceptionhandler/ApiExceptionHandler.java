@@ -44,13 +44,13 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         var message = "One or more fields are invalid. Please fill them out correctly and try again.";
         var servletRequest = ((ServletWebRequest) request).getRequest();
 
-        var objects = ex.getBindingResult()
+        var errorFields = ex.getBindingResult()
                 .getAllErrors()
                 .stream()
-                .map(err -> new StandardError.Object(((FieldError) err).getField(), err.getDefaultMessage()))
+                .map(err -> new StandardError.ErrorFields(((FieldError) err).getField(), err.getDefaultMessage()))
                 .toList();
 
-        return getErrorResponse(status.value(), error, message, servletRequest.getRequestURI(), objects);
+        return getErrorResponse(status.value(), error, message, servletRequest.getRequestURI(), errorFields);
     }
 
     @Override
@@ -67,8 +67,8 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     private ResponseEntity<Object> getErrorResponse(Integer status, String error, String message, String path,
-                                                    List<StandardError.Object> objects) {
-        var standardError = new StandardError(OffsetDateTime.now(), status, error, message, path, objects);
+                                                    List<StandardError.ErrorFields> errorFields) {
+        var standardError = new StandardError(OffsetDateTime.now(), status, error, message, path, errorFields);
         return new ResponseEntity<>(standardError, HttpStatus.valueOf(status));
     }
 }
