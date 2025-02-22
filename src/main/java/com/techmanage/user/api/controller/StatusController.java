@@ -1,5 +1,6 @@
 package com.techmanage.user.api.controller;
 
+import com.techmanage.user.api.openapi.controller.StatusControllerOpenApi;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +11,7 @@ import java.util.HashMap;
 
 @RequestMapping("/api/status")
 @RestController
-public class StatusController {
+public class StatusController implements StatusControllerOpenApi {
 
     @GetMapping
     public ResponseEntity<HashMap<String, Object>> getApiStatus() {
