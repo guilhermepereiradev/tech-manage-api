@@ -13,15 +13,15 @@ import java.util.HashMap;
 public class StatusController {
 
     @GetMapping
-    public ResponseEntity<HashMap<String, String>> getApiStatus() {
-        return ResponseEntity.ok(getSuccessResponse());
+    public ResponseEntity<HashMap<String, Object>> getApiStatus() {
+        return new ResponseEntity<>(getSuccessResponse(), HttpStatus.OK);
     }
 
-    private HashMap<String, String> getSuccessResponse() {
-        var response = new HashMap<String, String>();
+    private HashMap<String, Object> getSuccessResponse() {
+        var response = new HashMap<String, Object>();
         response.put("service", "tech-manage-api");
         response.put("status", "success");
-        response.put("statusCode", HttpStatus.OK.name());
+        response.put("statusCode", HttpStatus.OK.value());
         return response;
     }
 
