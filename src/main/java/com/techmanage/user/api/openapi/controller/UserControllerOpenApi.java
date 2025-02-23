@@ -75,12 +75,11 @@ public interface UserControllerOpenApi {
 
     @Operation(
             summary = "Cadastra um usuário",
-            parameters = @Parameter(name = "id", description = "ID de um usuário", example = "1"),
             responses = {
                     @ApiResponse(
                             responseCode = "201",
                             description = "Usuário criado",
-                            content = @Content(schema = @Schema(implementation = UserRequest.class))
+                            content = @Content(schema = @Schema(implementation = UserResponse.class))
                     ),
                     @ApiResponse(
                             responseCode = "400",
@@ -146,7 +145,7 @@ public interface UserControllerOpenApi {
                     @ApiResponse(
                             responseCode = "200",
                             description = "Usuário atualizado",
-                            content = @Content(schema = @Schema(implementation = UserRequest.class))
+                            content = @Content(schema = @Schema(implementation = UserResponse.class))
                     ),
                     @ApiResponse(
                             responseCode = "404",
