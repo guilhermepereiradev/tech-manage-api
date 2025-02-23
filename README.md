@@ -24,20 +24,20 @@ TechManage é uma aplicação para gerenciar usuários.
 
 ## Como Rodar a Aplicação
 1. Clone o repositório:
-   ```bash
-   git clone git@github.com:guilhermepereiradev/tech-manage-api.git
-   ```
+    ```bash
+    git clone https://github.com/guilhermepereiradev/tech-manage-api.git
+    ```
 ### Executando com Docker
 1. No diretório raiz da aplicação:
-   ```bash
-   docker compose up
-   ```
+    ```bash
+    docker compose up
+    ```
 
 ### Executando com Maven
 1. No diretório raiz da aplicação, rode o comando maven com as variáveis de ambiente do DB (ou altere diretamente no arquivo `application-dev.yaml`):
-   ```bash
+    ```bash
     ./mvnw spring-boot:run -Dspring-boot.run.arguments="--spring.profiles.active=dev --DB_HOST={db_host} --DB_PORT={port} --DB_NAME={db_name} --DB_USER={user} --DB_PASSWORD={password}"
-   ```
+    ```
 
 #### A aplicação estará disponível em http://localhost:8080 por padrão.
 
@@ -46,13 +46,13 @@ TechManage é uma aplicação para gerenciar usuários.
 Para rodar os testes, execute os seguintes comando:
 
 1. Testes de unidade:
-   ```bash
+    ```bash
     ./mvnw test
-   ```
+    ```
 2. Testes de integração:
-   ```bash
-     ./mvnw test -Dtest='**IT' 
-   ```
+    ```bash
+    ./mvnw test -Dtest='**IT' 
+    ```
 
 ## Endpoints
 #### A documentação da API está disponível pela interface do [swagger](http://localhost:8080/swagger-ui/index.html).
