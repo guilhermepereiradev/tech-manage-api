@@ -1,0 +1,26 @@
+services:
+  tech-manage-db:
+    image: postgres:latest
+    container_name: tech-manage-db
+    environment:
+      POSTGRES_DB: tech-manage-db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "1921:5432"
+
+  tech-manage-api:
+    build: .
+    image: tech-manage-api
+    container_name: tech-manage-api
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      DB_HOST: tech-manage-db
+      DB_PORT: 5432
+      DB_NAME: tech-manage-db
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+    depends_on:
+      - tech-manage-db
+    ports:
+      - "8080:8080"
