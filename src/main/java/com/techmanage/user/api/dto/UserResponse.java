@@ -13,7 +13,7 @@ public record UserResponse(
         Long id,
 
         @Schema(example = "John Doe")
-        String name,
+        String fullName,
 
         @Schema(example = "johndoe@email.com")
         String email,
@@ -29,7 +29,7 @@ public record UserResponse(
         UserType userType) {
 
     public static UserResponse of(User user) {
-        return new UserResponse(user.getId(), user.getName(), user.getEmail(), user.getPhone(), user.getBirthDate(), user.getUserType());
+        return new UserResponse(user.getId(), user.getFullName(), user.getEmail(), user.getPhone(), user.getBirthDate(), user.getUserType());
     }
 
     public static List<UserResponse> of(List<User> users) {

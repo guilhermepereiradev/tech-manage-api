@@ -14,7 +14,7 @@ public class User {
     private Long id;
 
     @Column(nullable = false)
-    private String name;
+    private String fullName;
 
     @Column(nullable = false, length = 100, unique = true)
     private String email;
@@ -31,17 +31,17 @@ public class User {
 
     public User() {}
 
-    public User(String name, String email, String phone, Date birthDate, UserType userType) {
-        this.name = name;
+    public User(String fullName, String email, String phone, Date birthDate, UserType userType) {
+        this.fullName = fullName;
         this.email = email;
         this.phone = phone;
         this.birthDate = birthDate;
         this.userType = userType;
     }
 
-    public User(Long id, String name, String email, String phone, Date birthDate, UserType userType) {
+    public User(Long id, String fullName, String email, String phone, Date birthDate, UserType userType) {
         this.id = id;
-        this.name = name;
+        this.fullName = fullName;
         this.email = email;
         this.phone = phone;
         this.birthDate = birthDate;
@@ -56,12 +56,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFullName(String name) {
+        this.fullName = name;
     }
 
     public String getEmail() {

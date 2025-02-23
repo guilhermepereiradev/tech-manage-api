@@ -70,7 +70,7 @@ class UserControllerIT {
                 .when()
                 .get("/{id}")
                 .then().statusCode(HttpStatus.OK.value())
-                .body("name", equalTo(user.getName()))
+                .body("fullName", equalTo(user.getFullName()))
                 .body("email", equalTo(user.getEmail()))
                 .body("phone", equalTo(user.getPhone()))
                 .body("birthDate", equalTo(sdf.format(user.getBirthDate())))
@@ -100,7 +100,7 @@ class UserControllerIT {
                 .post()
                 .then()
                 .statusCode(HttpStatus.CREATED.value())
-                .body("name", equalTo(newUser.getName()))
+                .body("fullName", equalTo(newUser.getFullName()))
                 .body("email", equalTo(newUser.getEmail()))
                 .body("phone", equalTo(newUser.getPhone()))
                 .body("birthDate", equalTo(sdf.format(user.getBirthDate())))
@@ -123,7 +123,7 @@ class UserControllerIT {
                 .body("message", containsString("One or more fields are invalid"))
                 .body("path", equalTo("/api/users"))
                 .body("objects", hasSize(6))
-                .body("objects.field", hasItems("name", "phone", "email", "birthDate"))
+                .body("objects.field", hasItems("fullName", "phone", "email", "birthDate"))
                 .body("objects.message", hasItems(
                         "size must be between 3 and 255",
                         "invalid phone number. Use the format: +XX XX XXXXX-XXXX",
@@ -181,7 +181,7 @@ class UserControllerIT {
                 .then()
                 .statusCode(HttpStatus.OK.value())
                 .body("id", equalTo(user.getId().intValue()))
-                .body("name", equalTo(newUser.getName()))
+                .body("fullName", equalTo(newUser.getFullName()))
                 .body("phone", equalTo(newUser.getPhone()))
                 .body("email", equalTo(newUser.getEmail()))
                 .body("birthDate", equalTo(sdf.format(newUser.getBirthDate())))
@@ -223,7 +223,7 @@ class UserControllerIT {
         StringBuilder json = new StringBuilder();
         json.append("{");
         if (user.getId() != null) json.append("\"id\": \"").append(user.getId()).append("\",");
-        json.append("\"name\": \"").append(user.getName()).append("\",");
+        json.append("\"fullName\": \"").append(user.getFullName()).append("\",");
         json.append("\"email\": \"").append(user.getEmail()).append("\",");
         json.append("\"phone\": \"").append(user.getPhone()).append("\",");
         json.append("\"birthDate\": \"").append(sdf.format(user.getBirthDate())).append("\",");

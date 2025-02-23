@@ -11,7 +11,7 @@ public record UserRequest(
         @Schema(example = "John Doe")
         @NotBlank
         @Size(min = 3, max = 255)
-        String name,
+        String fullName,
 
         @Schema(example = "johndoe@email.com")
         @Email
@@ -36,11 +36,11 @@ public record UserRequest(
         String userType) {
 
     public User toModel() {
-        return new User(name, email, phone, birthDate, UserType.valueOf(userType));
+        return new User(fullName, email, phone, birthDate, UserType.valueOf(userType));
     }
 
     public void copyProperties(User user) {
-        user.setName(name);
+        user.setFullName(fullName);
         user.setEmail(email);
         user.setPhone(phone);
         user.setBirthDate(birthDate);

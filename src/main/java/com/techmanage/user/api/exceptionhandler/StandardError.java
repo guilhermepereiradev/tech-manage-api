@@ -30,7 +30,7 @@ public record StandardError(
         List<ErrorFields> objects) {
 
         public record ErrorFields(
-                @Schema(description = "Campos inválido informado", example = "name")
+                @Schema(description = "Campos inválido informado", example = "fullName")
                 String field,
 
                 @Schema(description = "Descrição do valor inválido informado", example = "must not be blank.")
