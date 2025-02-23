@@ -83,23 +83,6 @@ public interface UserControllerOpenApi {
                             content = @Content(schema = @Schema(implementation = UserRequest.class))
                     ),
                     @ApiResponse(
-                            responseCode = "404",
-                            description = "Usuário não encontrado",
-                            content = @Content(
-                                    examples = @ExampleObject(
-                                            value = """
-                                            {
-                                                "timestamp": "2025-02-22T15:30:00Z",
-                                                "status": 404,
-                                                "error": "Entity not found",
-                                                "message": "User not found with id 5",
-                                                "path": "/api/users/5"
-                                            }
-                                            """
-                                    )
-                            )
-                    ),
-                    @ApiResponse(
                             responseCode = "400",
                             description = "Requisição inválida",
                             content = @Content(schema = @Schema(implementation = StandardError.class))
@@ -137,7 +120,19 @@ public interface UserControllerOpenApi {
                     @ApiResponse(
                             responseCode = "400",
                             description = "Requisição inválida",
-                            content = @Content(schema = @Schema(implementation = StandardError.class))
+                            content = @Content(
+                                    examples = @ExampleObject(
+                                            value = """
+                                            {
+                                                "timestamp": "2025-02-22T15:30:00Z",
+                                                "status": 400,
+                                                "error": "Type mismatch",
+                                                "message": "Method parameter 'id': Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; For input string: \\"abc\\"",
+                                                "path": "/api/users/abc"
+                                            }
+                                            """
+                                    )
+                            )
                     )
             }
     )
